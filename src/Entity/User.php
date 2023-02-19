@@ -39,34 +39,47 @@ class User implements UserInterface
      */
     private $email;
 
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+
     public function getId()
     {
         return $this->id;
     }
 
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->username;
     }
 
-    public function setUsername($username)
+    public function setUsername(string $username): self
     {
         $this->username = $username;
+
+        return $this ;
     }
 
-    public function getSalt()
+    public function getSalt(): ?string
     {
         return null;
     }
 
-    public function getPassword()
+     /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
     {
         return $this->password;
     }
 
-    public function setPassword($password)
+    public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
     }
 
     public function getEmail()
@@ -79,9 +92,33 @@ class User implements UserInterface
         $this->email = $email;
     }
 
-    public function getRoles()
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
     {
-        return array('ROLE_USER');
+        return (string) $this->username;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
     }
 
     public function eraseCredentials()
