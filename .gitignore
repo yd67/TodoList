@@ -21,6 +21,7 @@
 ###< symfony/phpunit-bridge ###
 
 ###> symfony/framework-bundle ###
+/migrations
 /.env.local
 /.env.local.php
 /.env.*.local
@@ -29,3 +30,8 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
