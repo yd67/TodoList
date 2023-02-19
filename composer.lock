@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "0832834ea399be92571bc63a903c9a91",
-=======
     "content-hash": "c108474db62565d176945a186c07a7a2",
->>>>>>> b03ba9585034c2e5100c384f5bcd028d26e4d31b
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -7451,19 +7447,6 @@
             "time": "2023-01-16T22:05:37+00:00"
         },
         {
-<<<<<<< HEAD
-            "name": "phar-io/manifest",
-            "version": "2.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phar-io/manifest.git",
-                "reference": "97803eca37d319dfa7826cc2437fc020857acb53"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phar-io/manifest/zipball/97803eca37d319dfa7826cc2437fc020857acb53",
-                "reference": "97803eca37d319dfa7826cc2437fc020857acb53",
-=======
             "name": "symfony/dotenv",
             "version": "v5.4.19",
             "source": {
@@ -7475,7 +7458,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/dotenv/zipball/38190ba62566afa26ca723a795d0a004e061bd2a",
                 "reference": "38190ba62566afa26ca723a795d0a004e061bd2a",
->>>>>>> b03ba9585034c2e5100c384f5bcd028d26e4d31b
                 "shasum": ""
             },
             "require": {
@@ -7519,12 +7501,7 @@
             ],
             "description": "Component for reading phar.io manifest information from a PHP Archive (PHAR)",
             "support": {
-<<<<<<< HEAD
-                "issues": "https://github.com/phar-io/manifest/issues",
-                "source": "https://github.com/phar-io/manifest/tree/2.0.3"
-=======
                 "source": "https://github.com/symfony/dotenv/tree/v5.4.19"
->>>>>>> b03ba9585034c2e5100c384f5bcd028d26e4d31b
             },
             "time": "2021-07-20T11:28:43+00:00"
         },
@@ -7572,16 +7549,7 @@
                     "role": "Developer"
                 }
             ],
-<<<<<<< HEAD
-            "description": "Library for handling version information and constraints",
-            "support": {
-                "issues": "https://github.com/phar-io/version/issues",
-                "source": "https://github.com/phar-io/version/tree/3.2.1"
-            },
-            "time": "2022-02-21T01:04:05+00:00"
-=======
             "time": "2023-01-01T08:32:19+00:00"
->>>>>>> b03ba9585034c2e5100c384f5bcd028d26e4d31b
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -9288,59 +9256,6 @@
                 }
             ],
             "time": "2023-01-01T08:32:19+00:00"
-<<<<<<< HEAD
-        },
-        {
-            "name": "theseer/tokenizer",
-            "version": "1.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/theseer/tokenizer.git",
-                "reference": "34a41e998c2183e22995f158c581e7b5e755ab9e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/34a41e998c2183e22995f158c581e7b5e755ab9e",
-                "reference": "34a41e998c2183e22995f158c581e7b5e755ab9e",
-                "shasum": ""
-            },
-            "require": {
-                "ext-dom": "*",
-                "ext-tokenizer": "*",
-                "ext-xmlwriter": "*",
-                "php": "^7.2 || ^8.0"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Arne Blankerts",
-                    "email": "arne@blankerts.de",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
-            "support": {
-                "issues": "https://github.com/theseer/tokenizer/issues",
-                "source": "https://github.com/theseer/tokenizer/tree/1.2.1"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/theseer",
-                    "type": "github"
-                }
-            ],
-            "time": "2021-07-28T10:34:58+00:00"
-=======
->>>>>>> b03ba9585034c2e5100c384f5bcd028d26e4d31b
         }
     ],
     "aliases": [],
