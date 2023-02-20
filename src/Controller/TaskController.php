@@ -7,6 +7,7 @@ use App\Form\TaskType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TaskController extends AbstractController
@@ -90,14 +91,30 @@ class TaskController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/tasks/{id}/delete", name="task_delete")
      */
     public function deleteTaskAction(Task $task)
     {
-        $this->entityManager->remove($task);
-        $this->entityManager->flush();
+        if ($task->getAuthor() == $this->getUser() ) {
 
-        $this->addFlash('success', 'La tâche a bien été supprimée.');
+            $this->entityManager->remove($task);
+            $this->entityManager->flush();
+            $this->addFlash('success', 'La tâche a bien été supprimée.');
+
+            return $this->redirectToRoute('task_list');
+        }
+
+        if ($task->getAuthor() == null && $this->isGranted('ROLE_ADMIN') ) {
+            
+            $this->entityManager->remove($task);
+            $this->entityManager->flush();
+            $this->addFlash('success', 'La tâche a bien été supprimée.');
+
+            return $this->redirectToRoute('task_list');
+        }  
+
+        $this->addFlash('danger', 'Vous n\'avez pas les droits suffisant pour supprimer cette tâche');
 
         return $this->redirectToRoute('task_list');
     }
