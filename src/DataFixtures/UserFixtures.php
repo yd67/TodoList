@@ -12,6 +12,9 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
  */
 class UserFixtures extends Fixture
 {
+    /**
+     * @var UserPasswordHasherInterface
+     */
     private $passwordHasher;
 
     public function __construct(UserPasswordHasherInterface $userPasswordHasher)
@@ -19,6 +22,12 @@ class UserFixtures extends Fixture
         $this->passwordHasher = $userPasswordHasher;
     }
 
+    /**
+     * create 2 user,test98with Role user & admin98 with role admin
+     *
+     * @param ObjectManager $manager
+     * @return void
+     */
     public function load(ObjectManager $manager): void
     {
         $user = new User() ;

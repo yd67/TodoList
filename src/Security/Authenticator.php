@@ -28,6 +28,10 @@ class Authenticator extends AbstractLoginFormAuthenticator
         $this->urlGenerator = $urlGenerator;
     }
 
+    /**
+     * @param Request $request
+     * @return Passport
+     */
     public function authenticate(Request $request): Passport
     {
         $username = $request->request->get('username', '');
@@ -43,6 +47,12 @@ class Authenticator extends AbstractLoginFormAuthenticator
         );
     }
 
+    /**
+     * @param Request $request
+     * @param TokenInterface $token
+     * @param string $firewallName
+     * @return Response|null
+     */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
@@ -54,6 +64,10 @@ class Authenticator extends AbstractLoginFormAuthenticator
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
+    /**
+     * @param Request $request
+     * @return string
+     */
     protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);

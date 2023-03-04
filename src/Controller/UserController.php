@@ -22,6 +22,7 @@ class UserController extends AbstractController
     }
     
     /**
+     * @param UserRepository $userRepository
      * @Route("/users", name="user_list")
      */
     public function listAction(UserRepository $userRepository)
@@ -30,6 +31,8 @@ class UserController extends AbstractController
     }
 
     /**
+     * @param Request $request
+     * @param UserPasswordHasherInterface $userPasswordHasher
      * @Route("/users/create", name="user_create")
      */
     public function createAction(Request $request,UserPasswordHasherInterface $userPasswordHasher)
@@ -56,6 +59,8 @@ class UserController extends AbstractController
     }
 
     /**
+     * @param Request $request
+     * @param UserPasswordHasherInterface $userPasswordHasher
      * @Route("/users/{id}/edit", name="user_edit")
      */
     public function editAction(User $user, Request $request,UserPasswordHasherInterface $userPasswordHasher)

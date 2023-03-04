@@ -14,7 +14,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TaskController extends AbstractController
 {
+
+    /**
+     * @var ManagerRegistry
+     */
     public $entityManager ;
+
 
     public function __construct(ManagerRegistry $doctrine)
     {
@@ -22,6 +27,7 @@ class TaskController extends AbstractController
     }
 
     /**
+     * @param TaskRepository $taskRepository
      * @Route("/tasks", name="task_list")
      */
     public function listAction(TaskRepository $taskRepository)
@@ -30,6 +36,8 @@ class TaskController extends AbstractController
     }
 
     /**
+     * @param Request $request
+     * 
      * @IsGranted("ROLE_USER")
      * @Route("/tasks/create", name="task_create")
      */
@@ -56,6 +64,8 @@ class TaskController extends AbstractController
     }
 
     /**
+     * @param Task $task
+     * @param Request $request
      * @IsGranted("ROLE_USER")
      * @Route("/tasks/{id}/edit", name="task_edit")
      */
@@ -79,6 +89,7 @@ class TaskController extends AbstractController
     }
 
     /**
+     * @param Task $task
      * @Route("/tasks/{id}/toggle", name="task_toggle")
      */
     public function toggleTaskAction(Task $task)
@@ -92,6 +103,7 @@ class TaskController extends AbstractController
     }
 
     /**
+     * @param Task $task
      * @IsGranted("ROLE_USER")
      * @Route("/tasks/{id}/delete", name="task_delete")
      */
