@@ -72,18 +72,14 @@ class UserController extends AbstractController
     public function editAction(User $user, Request $request,UserPasswordHasherInterface $userPasswordHasher)
     {
         $form = $this->createForm(UserType::class,$user);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $password = $userPasswordHasher->hashPassword($user, $user->getPassword());
             $user->setPassword($password);
 
             $this->entityManager->flush();
-
             $this->addFlash('success',"L'utilisateur a bien été modifié");
-
             return $this->redirectToRoute('user_list');
         }
 
