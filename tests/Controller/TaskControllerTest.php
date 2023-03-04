@@ -20,11 +20,34 @@ use Liip\TestFixturesBundle\Services\DatabaseTools\AbstractDatabaseTool;
 
 class TaskControllerTest extends WebTestCase
 {
+     /**
+     * @var KernelBrowser
+     */
     public $client;
+
+    /**
+     * @var UrlGeneratorInterface
+     */
     public $urlGenerator;
+
+    /**
+     * @var UserRepository
+     */
     public $userRepository;
+
+    /**
+     * @var TaskRepository
+     */
     public $taskRepository;
-    protected $entityManager;
+
+    /**
+     * @var EntityManagerInterface
+     */
+    public $entityManager;
+
+    /**
+     * @var DatabaseToolCollection
+     */
     protected $databaseTool;
 
     public function setUp(): void
@@ -33,11 +56,11 @@ class TaskControllerTest extends WebTestCase
 
         $this->databaseTool = self::getContainer()->get(DatabaseToolCollection::class)->get();
         $this->databaseTool->loadAllFixtures();
-        
+
         $this->urlGenerator = $this->client->getContainer()->get('router.default');
         $this->userRepository = $this->client->getContainer()->get(UserRepository::class);
         $this->taskRepository = $this->client->getContainer()->get(TaskRepository::class);
-        $this->entityManager = $this->client->getContainer()->get(EntityManagerInterface::class);   
+        $this->entityManager = $this->client->getContainer()->get(EntityManagerInterface::class);
     }
 
     protected function tearDown(): void

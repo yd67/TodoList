@@ -13,16 +13,39 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class UserControllerTest extends WebTestCase
 {
+     /**
+     * @var KernelBrowser
+     */
     public $client;
+
+    /**
+     * @var UrlGeneratorInterface
+     */
     public $urlGenerator;
+
+    /**
+     * @var UserRepository
+     */
     public $userRepository;
-    protected $adminUser;
+
+    /**
+     * @var EntityManagerInterface
+     */
     public $entityManager;
+
+    /**
+     * @var DatabaseToolCollection
+     */
     protected $databaseTool;
+
+    /**
+     * @var User
+     */
+    protected $adminUser;
 
     public function setUp(): void
     {
-        
+
         $this->client = static::createClient();
         $this->databaseTool = self::getContainer()->get(DatabaseToolCollection::class)->get();
         $this->databaseTool->loadAllFixtures();
@@ -30,7 +53,7 @@ class UserControllerTest extends WebTestCase
         $this->userRepository = self::getContainer()->get(UserRepository::class);
         $this->entityManager = self::getContainer()->get(EntityManagerInterface::class);
         $this->adminUser = $this->userRepository->findOneBy(['username' => 'admin98']);
-        $this->client->loginUser($this->adminUser); 
+        $this->client->loginUser($this->adminUser);
     }
 
     protected function tearDown(): void

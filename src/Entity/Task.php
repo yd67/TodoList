@@ -53,11 +53,17 @@ class Task
         $this->isDone = false;
     }
 
+    /**
+     * @return integer|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return DateTime|null
+     */
     public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;

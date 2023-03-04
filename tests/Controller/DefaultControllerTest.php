@@ -9,7 +9,11 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class DefaultControllerTest extends WebTestCase
 {
+    /**
+     * @var KernelBrowser
+     */
     public $client;
+
     public $urlGenerator;
 
     public function setUp(): void
@@ -18,11 +22,13 @@ class DefaultControllerTest extends WebTestCase
         $this->urlGenerator = $this->client->getContainer()->get(UrlGeneratorInterface::class);
     }
 
+    /**
+     * @return void
+     */
     public function testShowHomePage(): void
     {
         $this->client->request(Request::METHOD_GET, $this->urlGenerator->generate('homepage'));
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertSelectorTextContains("h1", "Bienvenue sur Todo List, l'application vous permettant de gérer l'ensemble de vos tâches sans effort !");
-    
     }
 }

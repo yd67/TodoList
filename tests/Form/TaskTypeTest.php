@@ -8,6 +8,9 @@ use Symfony\Component\Form\Test\TypeTestCase;
 
 class TaskTypeTest extends TypeTestCase
 {
+    /**
+     * @return void
+     */
     public function testSubmitValidData(): void
     {
         $formData = [

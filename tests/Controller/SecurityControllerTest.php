@@ -9,7 +9,14 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class SecurityControllerTest extends WebTestCase
 {
+    /**
+     * @var KernelBrowser
+     */
     public $client;
+
+    /**
+     * @var UrlGeneratorInterface
+     */
     public $urlGenerator;
 
     public function setUp(): void
@@ -23,13 +30,12 @@ class SecurityControllerTest extends WebTestCase
         $this->client->request(Request::METHOD_GET, $this->urlGenerator->generate('app_login'));
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains("button", "Se connecter");
-    
     }
 
     public function testLoginUser(): void
     {
         $crawler =  $this->client->request(Request::METHOD_GET, $this->urlGenerator->generate('app_login'));
-    
+
         $buttonCrawlerNode = $crawler->selectButton('Se connecter');
         $form = $buttonCrawlerNode->form([
             'username' => 'admin98',
@@ -41,6 +47,5 @@ class SecurityControllerTest extends WebTestCase
         $this->client->followRedirect();
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains("h1", "Bienvenue sur Todo List, l'application vous permettant de gérer l'ensemble de vos tâches sans effort !");
-    
     }
 }
