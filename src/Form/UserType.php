@@ -29,9 +29,6 @@ class UserType extends AbstractType
                 'choices'  => [
                     'Utilisateur' =>  'ROLE_USER',
                     'Administrateur' => 'ROLE_ADMIN',
-                ],
-                'choice_attr' => [
-                    'class' => 'form-check'
                 ]
             ])
             ->add('email', EmailType::class, ['label' => 'Adresse email'])

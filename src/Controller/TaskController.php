@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Task;
 use App\Form\TaskType;
+use App\Repository\TaskRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -22,9 +24,9 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks", name="task_list")
      */
-    public function listAction()
+    public function listAction(TaskRepository $taskRepository)
     {
-        return $this->render('task/list.html.twig', ['tasks' => $this->entityManager->getRepository(Task::class)->findAll()]);
+        return $this->render('task/list.html.twig', ['tasks' => $taskRepository->findAll()]);
     }
 
     /**
@@ -60,10 +62,9 @@ class TaskController extends AbstractController
     public function editAction(Task $task, Request $request)
     {
         $form = $this->createForm(TaskType::class, $task);
-
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->entityManager->flush();
 
             $this->addFlash('success', 'La tâche a bien été modifiée.');
@@ -96,25 +97,17 @@ class TaskController extends AbstractController
      */
     public function deleteTaskAction(Task $task)
     {
-        if ($task->getAuthor() == $this->getUser() ) {
-
-            $this->entityManager->remove($task);
-            $this->entityManager->flush();
-            $this->addFlash('success', 'La tâche a bien été supprimée.');
-
+        if (!($task->getAuthor() == $this->getUser() 
+        || ($task->getAuthor() == null && $this->isGranted('ROLE_ADMIN') ) )) {
+ 
+            $this->addFlash('error', 'Vous n\'avez pas les droits suffisant pour supprimer cette tâche');
             return $this->redirectToRoute('task_list');
+ 
         }
 
-        if ($task->getAuthor() == null && $this->isGranted('ROLE_ADMIN') ) {
-            
-            $this->entityManager->remove($task);
-            $this->entityManager->flush();
-            $this->addFlash('success', 'La tâche a bien été supprimée.');
-
-            return $this->redirectToRoute('task_list');
-        }  
-
-        $this->addFlash('danger', 'Vous n\'avez pas les droits suffisant pour supprimer cette tâche');
+        $this->entityManager->remove($task);
+        $this->entityManager->flush();
+        $this->addFlash('success', 'La tâche a bien été supprimée.');
 
         return $this->redirectToRoute('task_list');
     }
