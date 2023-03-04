@@ -35,7 +35,7 @@ class UserController extends AbstractController
     public function createAction(Request $request,UserPasswordHasherInterface $userPasswordHasher)
     {
         $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class,$user);
 
         $form->handleRequest($request);
 
@@ -47,7 +47,7 @@ class UserController extends AbstractController
             $this->entityManager->persist($user);
             $this->entityManager->flush();
 
-            $this->addFlash('success', "L'utilisateur a bien été ajouté.");
+            $this->addFlash('success',"L'utilisateur a bien été ajouté.");
 
             return $this->redirectToRoute('user_list');
         }
@@ -60,7 +60,7 @@ class UserController extends AbstractController
      */
     public function editAction(User $user, Request $request,UserPasswordHasherInterface $userPasswordHasher)
     {
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class,$user);
 
         $form->handleRequest($request);
 
@@ -71,11 +71,11 @@ class UserController extends AbstractController
 
             $this->entityManager->flush();
 
-            $this->addFlash('success', "L'utilisateur a bien été modifié");
+            $this->addFlash('success',"L'utilisateur a bien été modifié");
 
             return $this->redirectToRoute('user_list');
         }
 
-        return $this->render('user/edit.html.twig', ['form' => $form->createView(), 'user' => $user]);
+        return $this->render('user/edit.html.twig', ['form' => $form->createView(),'user' => $user]);
     }
 }

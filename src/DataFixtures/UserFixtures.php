@@ -24,12 +24,12 @@ class UserFixtures extends Fixture
         $user = new User() ;
         $user->setUsername('test98');
         $user->setEmail('test98@gmail.com');
-        $user->setPassword($this->passwordHasher->hashPassword( $user,'test'));
+        $user->setPassword($this->passwordHasher->hashPassword($user,'test'));
 
         $adminUser = new User();
         $adminUser->setUsername('admin98');
         $adminUser->setEmail('admin98@gmail.com');
-        $adminUser->setPassword($this->passwordHasher->hashPassword( $user,'test'));
+        $adminUser->setPassword($this->passwordHasher->hashPassword($user,'test'));
         $adminUser->setRoles(['ROLE_ADMIN']);
 
         
