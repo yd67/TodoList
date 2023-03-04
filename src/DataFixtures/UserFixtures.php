@@ -7,6 +7,9 @@ use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+/**
+ * @codeCoverageIgnore
+ */
 class UserFixtures extends Fixture
 {
     private $passwordHasher;
@@ -18,20 +21,22 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $faker = \Faker\Factory::create('fr_FR');
+        $user = new User() ;
+        $user->setUsername('test98');
+        $user->setEmail('test98@gmail.com');
+        $user->setPassword($this->passwordHasher->hashPassword( $user,'test'));
 
-        for ($i = 0; $i < 5; $i++) {
-            $user = new User;
-            $user->setUsername($faker->userName());
-            $user->setEmail($faker->email());
-            $user->setPassword(
-                $this->passwordHasher->hashPassword(
-                    $user,
-                    'test'
-                )
-            );
-            $manager->persist($user);
-            $manager->flush();
-        }
+        $adminUser = new User();
+        $adminUser->setUsername('admin98');
+        $adminUser->setEmail('admin98@gmail.com');
+        $adminUser->setPassword($this->passwordHasher->hashPassword( $user,'test'));
+        $adminUser->setRoles(['ROLE_ADMIN']);
+
+        
+        $manager->persist($user);
+        $manager->persist($adminUser);
+
+        $manager->flush();
+
     }
 }
