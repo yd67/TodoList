@@ -12,7 +12,6 @@ class TaskFixtures extends Fixture
 {
     /**
      * load 6 task in database 
-     * 
      * @param ObjectManager $manager
      * @return void
      */

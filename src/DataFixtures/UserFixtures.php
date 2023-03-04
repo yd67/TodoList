@@ -24,7 +24,6 @@ class UserFixtures extends Fixture
 
     /**
      * create 2 user,test98 with Role user & admin98 with role admin
-     *
      * @param ObjectManager $manager
      * @return void
      */
