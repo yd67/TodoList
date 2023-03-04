@@ -25,6 +25,10 @@ class SecurityControllerTest extends WebTestCase
         $this->urlGenerator = $this->client->getContainer()->get(UrlGeneratorInterface::class);
     }
 
+    /**
+     * test login page 
+     * @return void
+     */
     public function testShowLoginPage(): void
     {
         $this->client->request(Request::METHOD_GET, $this->urlGenerator->generate('app_login'));
@@ -32,6 +36,10 @@ class SecurityControllerTest extends WebTestCase
         $this->assertSelectorTextContains("button", "Se connecter");
     }
 
+    /**
+     * test submit login fom
+     * @return void
+     */
     public function testLoginUser(): void
     {
         $crawler =  $this->client->request(Request::METHOD_GET, $this->urlGenerator->generate('app_login'));

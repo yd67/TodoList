@@ -63,12 +63,20 @@ class UserControllerTest extends WebTestCase
     }
 
 
+    /**
+     * show all users 
+     * @return void
+     */
     public function testShowAllUsers(): void
     {
         $this->client->request(Request::METHOD_GET, $this->urlGenerator->generate('user_list'));
         $this->assertResponseIsSuccessful();
     }
 
+    /**
+     * test created user 
+     * @return void
+     */
     public function testCreateUser(): void
     {
 
@@ -94,6 +102,10 @@ class UserControllerTest extends WebTestCase
         $this->assertNotEmpty($user);
     }
 
+    /**
+     * test edit user
+     * @return void
+     */
     public function testEditUser(): void
     {
         $user = $this->userRepository->findOneBy([]);

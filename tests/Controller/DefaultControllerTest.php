@@ -23,6 +23,7 @@ class DefaultControllerTest extends WebTestCase
     }
 
     /**
+     * test home page
      * @return void
      */
     public function testShowHomePage(): void
