@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends AbstractController
 {
     /**
+     * show homepage
+     * 
      * @Route("/", name="homepage")
      */
     public function indexAction():Response

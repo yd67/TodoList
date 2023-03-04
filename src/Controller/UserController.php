@@ -14,6 +14,9 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserController extends AbstractController
 {
 
+    /**
+     * @var ManagerRegistry
+     */
     public $entityManager ;
 
     public function __construct(ManagerRegistry $doctrine)
@@ -22,6 +25,8 @@ class UserController extends AbstractController
     }
     
     /**
+     * show list of all users 
+     * 
      * @param UserRepository $userRepository
      * @Route("/users", name="user_list")
      */
@@ -31,6 +36,8 @@ class UserController extends AbstractController
     }
 
     /**
+     * create a user 
+     * 
      * @param Request $request
      * @param UserPasswordHasherInterface $userPasswordHasher
      * @Route("/users/create", name="user_create")
@@ -59,6 +66,8 @@ class UserController extends AbstractController
     }
 
     /**
+     * update a user 
+     * 
      * @param Request $request
      * @param UserPasswordHasherInterface $userPasswordHasher
      * @Route("/users/{id}/edit", name="user_edit")

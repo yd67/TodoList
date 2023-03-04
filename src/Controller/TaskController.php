@@ -27,6 +27,8 @@ class TaskController extends AbstractController
     }
 
     /**
+     * show list of all task 
+     * 
      * @param TaskRepository $taskRepository
      * @Route("/tasks", name="task_list")
      */
@@ -36,6 +38,8 @@ class TaskController extends AbstractController
     }
 
     /**
+     * create a task 
+     * 
      * @param Request $request
      * 
      * @IsGranted("ROLE_USER")
@@ -64,6 +68,8 @@ class TaskController extends AbstractController
     }
 
     /**
+     * edit a task 
+     * 
      * @param Task $task
      * @param Request $request
      * @IsGranted("ROLE_USER")
@@ -89,6 +95,8 @@ class TaskController extends AbstractController
     }
 
     /**
+     * change the state of the task 
+     * 
      * @param Task $task
      * @Route("/tasks/{id}/toggle", name="task_toggle")
      */
@@ -103,6 +111,8 @@ class TaskController extends AbstractController
     }
 
     /**
+     * delete a task 
+     * 
      * @param Task $task
      * @IsGranted("ROLE_USER")
      * @Route("/tasks/{id}/delete", name="task_delete")

@@ -12,6 +12,8 @@ class SecurityController extends AbstractController
 {
 
     /**
+     * login method
+     * 
      * @param AuthenticationUtils
      * @Route("/login", name="app_login")
     */
@@ -25,6 +27,8 @@ class SecurityController extends AbstractController
     }
 
     /**
+     * logout method 
+     * 
      * @Route("/logout", name="app_logout")
      * @codeCoverageIgnore
      */
