@@ -85,7 +85,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return null;
     }
 
-     /**
+    /**
      * @see PasswordAuthenticatedUserInterface
      */
     public function getPassword(): string
