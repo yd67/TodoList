@@ -20,7 +20,7 @@ use Liip\TestFixturesBundle\Services\DatabaseTools\AbstractDatabaseTool;
 
 class TaskControllerTest extends WebTestCase
 {
-     /**
+    /**
      * @var KernelBrowser
      */
     public $client;

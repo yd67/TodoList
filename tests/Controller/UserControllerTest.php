@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class UserControllerTest extends WebTestCase
 {
-     /**
+    /**
      * @var KernelBrowser
      */
     public $client;
