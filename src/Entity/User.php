@@ -59,16 +59,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUsername(): string
+    public function getUsername(): ?string
     {
         return $this->username;
     }
 
+    /**
+     * @param string $username
+     * @return self
+     */
     public function setUsername(string $username): self
     {
         $this->username = $username;
@@ -81,7 +85,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return null;
     }
 
-     /**
+    /**
      * @see PasswordAuthenticatedUserInterface
      */
     public function getPassword(): string
@@ -96,12 +100,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
 
-    public function setEmail($email)
+    /**
+     * @param string $email
+     * @return void
+     */
+    public function setEmail(string $email)
     {
         $this->email = $email;
     }
@@ -128,6 +136,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return array_unique($roles);
     }
 
+    /**
+     * @param array $roles
+     * @return self
+     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;

@@ -8,6 +8,9 @@ use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
+    /**
+     * @var User
+     */
     public $user;
 
     public function setUp(): void

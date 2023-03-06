@@ -10,12 +10,15 @@ use Doctrine\Persistence\ObjectManager;
  */
 class TaskFixtures extends Fixture
 {
+    /**
+     * load 6 task in database 
+     * @param ObjectManager $manager
+     * @return void
+     */
     public function load(ObjectManager $manager): void
     {
         $faker = \Faker\Factory::create('fr_FR');
-
         for ($i = 0; $i < 5; $i++) {
-
             $task = new Task;
             $task->setTitle($faker->sentence());
             $task->setContent($faker->text());
@@ -23,7 +26,6 @@ class TaskFixtures extends Fixture
 
             $manager->persist($task);
         }
-
         $testTask = new Task;
         $testTask->setTitle('le tache de test');
         $testTask->setContent('un contenu');

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -52,12 +53,18 @@ class Task
         $this->isDone = false;
     }
 
-    public function getId()
+    /**
+     * @return integer|null
+     */
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCreatedAt()
+    /**
+     * @return DateTime|null
+     */
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
@@ -67,7 +74,7 @@ class Task
         $this->createdAt = $createdAt;
     }
 
-    public function getTitle()
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -77,7 +84,7 @@ class Task
         $this->title = $title;
     }
 
-    public function getContent()
+    public function getContent(): ?string
     {
         return $this->content;
     }
@@ -87,7 +94,7 @@ class Task
         $this->content = $content;
     }
 
-    public function isDone()
+    public function isDone(): ?bool
     {
         return $this->isDone;
     }

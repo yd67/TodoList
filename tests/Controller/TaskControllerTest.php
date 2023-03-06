@@ -20,11 +20,34 @@ use Liip\TestFixturesBundle\Services\DatabaseTools\AbstractDatabaseTool;
 
 class TaskControllerTest extends WebTestCase
 {
+    /**
+     * @var KernelBrowser
+     */
     public $client;
+
+    /**
+     * @var UrlGeneratorInterface
+     */
     public $urlGenerator;
+
+    /**
+     * @var UserRepository
+     */
     public $userRepository;
+
+    /**
+     * @var TaskRepository
+     */
     public $taskRepository;
-    protected $entityManager;
+
+    /**
+     * @var EntityManagerInterface
+     */
+    public $entityManager;
+
+    /**
+     * @var DatabaseToolCollection
+     */
     protected $databaseTool;
 
     public function setUp(): void
@@ -33,11 +56,11 @@ class TaskControllerTest extends WebTestCase
 
         $this->databaseTool = self::getContainer()->get(DatabaseToolCollection::class)->get();
         $this->databaseTool->loadAllFixtures();
-        
+
         $this->urlGenerator = $this->client->getContainer()->get('router.default');
         $this->userRepository = $this->client->getContainer()->get(UserRepository::class);
         $this->taskRepository = $this->client->getContainer()->get(TaskRepository::class);
-        $this->entityManager = $this->client->getContainer()->get(EntityManagerInterface::class);   
+        $this->entityManager = $this->client->getContainer()->get(EntityManagerInterface::class);
     }
 
     protected function tearDown(): void
@@ -46,12 +69,21 @@ class TaskControllerTest extends WebTestCase
         unset($this->databaseTool);
     }
 
+    /**
+     * test show task list 
+     * @return void
+     */
     public function testShowTaskList(): void
     {
         $this->client->request(Request::METHOD_GET, $this->urlGenerator->generate('task_list'));
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
     }
 
+    /**
+     * test show hte page create 
+     *
+     * @return void
+     */
     public function testShowCreateTaksPage(): void
     {
         $user = $this->userRepository->findOneBy(['username' => 'test98']);
@@ -61,6 +93,10 @@ class TaskControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
     }
 
+    /**
+     * test create task 
+     * @return void
+     */
     public function testCreateTask(): void
     {
         $user = $this->userRepository->findOneBy(['username' => 'test98']);
@@ -86,6 +122,10 @@ class TaskControllerTest extends WebTestCase
         $this->assertNotEmpty($newTask);
     }
 
+    /**
+     * test edit task
+     * @return void
+     */
     public function testEditTask(): void
     {
         $user = $this->userRepository->findOneBy(['username' => 'test98']);
@@ -113,6 +153,10 @@ class TaskControllerTest extends WebTestCase
         $this->assertNotEmpty($updatedTask);
     }
 
+    /**
+     * test toggle task
+     * @return void
+     */
     public function testToggleTask(): void
     {
         $task = $this->taskRepository->findOneBy([]);
@@ -123,6 +167,10 @@ class TaskControllerTest extends WebTestCase
         $this->assertNotSame($isDone, $newIsDone);
     }
 
+    /**
+     * test task deleted by user with the role admin 
+     * @return void
+     */
     public function testDeleteTaskWithRoleAdmin(): void
     {
         $user = $this->userRepository->findOneBy(['username' => 'admin98']);
@@ -137,6 +185,10 @@ class TaskControllerTest extends WebTestCase
         $this->assertSelectorExists('.alert-success');
     }
 
+    /**
+     * test a task deletion when the user is not the owner, and has not the role admin
+     * @return void
+     */
     public function testUsernotAllowedDeleteTask(): void
     {
         $task = $this->taskRepository->findOneBy([]);
