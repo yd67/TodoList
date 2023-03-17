@@ -2,6 +2,8 @@
 # Améliorez une application existante de ToDo & Co
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/fcc195ac51c04779a28659067a9c52e9)](https://www.codacy.com/gh/yd67/todoList/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=yd67/todoList&amp;utm_campaign=Badge_Grade)
+
+
 ![Logo](https://user.oc-static.com/upload/2016/11/18/14794830624591_shutterstock_318837722.jpg)
 
 
