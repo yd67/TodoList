@@ -176,7 +176,7 @@ class TaskControllerTest extends WebTestCase
         $this->assertNotSame($isDone, $newIsDone);
     }
 
-     /**
+    /**
      * test task deleted, when it does not exist
      * @return void
      */
