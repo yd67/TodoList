@@ -114,7 +114,7 @@ class TaskController extends AbstractController
         }
 
         if (!($task->getAuthor() === $this->getUser() 
-        || ($task->getAuthor() === null && $this->isGranted('ROLE_ADMIN') ) )) {
+            || ($task->getAuthor() === null && $this->isGranted('ROLE_ADMIN') ) )) {
  
             $this->addFlash('error','Vous ne pouvez pas supprimer cette tâche');
             return $this->redirectToRoute('task_list');
