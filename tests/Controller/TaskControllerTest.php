@@ -50,10 +50,16 @@ class TaskControllerTest extends WebTestCase
      */
     protected $databaseTool;
 
+    /**
+     * @var User
+     */
+    public $adminUser;
+
     public function setUp(): void
     {
         $this->client = static::createClient();
 
+        // generate test data fixtures 
         $this->databaseTool = self::getContainer()->get(DatabaseToolCollection::class)->get();
         $this->databaseTool->loadAllFixtures();
 
@@ -61,6 +67,9 @@ class TaskControllerTest extends WebTestCase
         $this->userRepository = $this->client->getContainer()->get(UserRepository::class);
         $this->taskRepository = $this->client->getContainer()->get(TaskRepository::class);
         $this->entityManager = $this->client->getContainer()->get(EntityManagerInterface::class);
+
+        $this->adminUser = $this->userRepository->findOneBy(['username' => 'admin98']);
+        $this->client->loginUser($this->adminUser);
     }
 
     protected function tearDown(): void
@@ -165,6 +174,22 @@ class TaskControllerTest extends WebTestCase
 
         $newIsDone = !$isDone;
         $this->assertNotSame($isDone, $newIsDone);
+    }
+
+     /**
+     * test task deleted, when it does not exist
+     * @return void
+     */
+    public function testTaskDeleteWhenTaskDoesNotExist(): void
+    {
+        $user = $this->userRepository->findOneBy(['username' => 'admin98']);
+        $this->client->loginUser($user);
+
+        $this->client->request('GET', $this->urlGenerator->generate('task_delete', ['id' => 0 ]));
+
+        $this->client->followRedirect();
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertSelectorExists('.alert-danger');
     }
 
     /**

@@ -45,13 +45,16 @@ class UserControllerTest extends WebTestCase
 
     public function setUp(): void
     {
-
         $this->client = static::createClient();
+
+        // generaten test data fixtures  
         $this->databaseTool = self::getContainer()->get(DatabaseToolCollection::class)->get();
         $this->databaseTool->loadAllFixtures();
+
         $this->urlGenerator = self::getContainer()->get(UrlGeneratorInterface::class);
         $this->userRepository = self::getContainer()->get(UserRepository::class);
         $this->entityManager = self::getContainer()->get(EntityManagerInterface::class);
+
         $this->adminUser = $this->userRepository->findOneBy(['username' => 'admin98']);
         $this->client->loginUser($this->adminUser);
     }
