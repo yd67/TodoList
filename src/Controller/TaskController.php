@@ -108,7 +108,7 @@ class TaskController extends AbstractController
      */
     public function deleteTaskAction(Task $task = null)
     {
-        if ($task == null) {
+        if ($task === null) {
             $this->addFlash('error','Vous ne pouvez pas supprimer cette tâche');
             return $this->redirectToRoute('task_list');
         }
