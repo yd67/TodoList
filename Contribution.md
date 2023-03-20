@@ -31,4 +31,4 @@ se référer à la [documentation officielle de Symfony](https://symfony.com/doc
 
 il faudra faire en sorte que la couverture de code soit superireur a 88% .
 
-Chemin couverture de code : public/test-coverage 
+**Chemin couverture de code : public/test-coverage** 
