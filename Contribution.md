@@ -24,7 +24,7 @@ Pour Codacy la note doit etre superieur a **B** .
 
 ## Mettre en place des tests sur le projet
 
-Pour l'ajout de toutes nouvelles fonctionnalité, des tests **unitaires*** et **fonctionnelles devront être mise en place .les tests devront  être implémenté avec **PhpUnit**.
+Pour l'ajout de toutes nouvelles fonctionnalité, des tests **unitaires** et **fonctionnelles** devront être mise en place .les tests devront  être implémenté avec **PhpUnit**.
 
 se référer à la [documentation officielle de Symfony](https://symfony.com/doc/current/testing.html) 
 
