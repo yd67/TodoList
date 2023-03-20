@@ -106,12 +106,17 @@ class TaskController extends AbstractController
      * @IsGranted("ROLE_USER")
      * @Route("/tasks/{id}/delete", name="task_delete")
      */
-    public function deleteTaskAction(Task $task)
+    public function deleteTaskAction(Task $task = null)
     {
+        if ($task == null) {
+            $this->addFlash('error','Vous ne pouvez pas supprimer cette tâche');
+            return $this->redirectToRoute('task_list');
+        }
+
         if (!($task->getAuthor() === $this->getUser() 
         || ($task->getAuthor() === null && $this->isGranted('ROLE_ADMIN') ) )) {
  
-            $this->addFlash('error','Vous n\'avez pas les droits suffisant pour supprimer cette tâche');
+            $this->addFlash('error','Vous ne pouvez pas supprimer cette tâche');
             return $this->redirectToRoute('task_list');
  
         }
