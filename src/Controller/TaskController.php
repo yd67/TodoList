@@ -108,13 +108,13 @@ class TaskController extends AbstractController
      */
     public function deleteTaskAction(Task $task = null)
     {
-        if ($task == null) {
+        if ($task === null) {
             $this->addFlash('error','Vous ne pouvez pas supprimer cette tâche');
             return $this->redirectToRoute('task_list');
         }
 
         if (!($task->getAuthor() === $this->getUser() 
-        || ($task->getAuthor() === null && $this->isGranted('ROLE_ADMIN') ) )) {
+            || ($task->getAuthor() === null && $this->isGranted('ROLE_ADMIN') ) )) {
  
             $this->addFlash('error','Vous ne pouvez pas supprimer cette tâche');
             return $this->redirectToRoute('task_list');
