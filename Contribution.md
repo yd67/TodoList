@@ -16,7 +16,7 @@ L'ajout de nouvelle fonctionnalité se fait en créant une branche spécifique �
 Avant de proposer une pull request le code doit respecter le **processus de qualité** . c'est a dire :
 
 ## Respect des Standards PSR-1 PSR-4 PSR-12
- [plus d'information](https://www.php-fig.org/psr/)
+ [plus d'informations](https://www.php-fig.org/psr/)
  
 ## Faire une analyse de son code 
 
